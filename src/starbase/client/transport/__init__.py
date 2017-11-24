@@ -11,6 +11,7 @@ import time
 import requests
 from requests.auth import HTTPBasicAuth
 from requests.exceptions import RequestException
+from requests_kerberos import HTTPKerberosAuth
 
 from six import string_types
 
@@ -126,6 +127,9 @@ class HttpRequest(object):
                 self.__connection.user,
                 self.__connection.password
                 )
+
+        if self.__connection.kerberos:
+            request_data['auth'] = HTTPKerberosAuth()
 
         for i in range(connection.retries + 1):
             self.response = self.call(method, request_data)

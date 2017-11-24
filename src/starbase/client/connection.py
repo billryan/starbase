@@ -35,7 +35,7 @@ class Connection(object):
     """
     def __init__(self, host=HOST, port=PORT, url=None, user=USER, password=PASSWORD, secure=False, \
                  content_type=DEFAULT_CONTENT_TYPE, perfect_dict=PERFECT_DICT,
-                 retries=RETRIES, retry_delay=RETRY_DELAY):
+                 retries=RETRIES, retry_delay=RETRY_DELAY, kerberos=False):
         """
         Creates a new connection instance.
 
@@ -59,6 +59,7 @@ class Connection(object):
         self.perfect_dict = perfect_dict
         self.retries = retries
         self.retry_delay = retry_delay
+        self.kerberos = kerberos
         self.__connect(url)
 
     def __repr__(self):
