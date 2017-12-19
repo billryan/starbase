@@ -88,15 +88,15 @@ def build_json_data(row, columns, timestamp=None, encode_content=False, with_row
         else:
             for column, data in columns.items():
                 for key, value in data.items():
-                    column_family = '{0}:{1}'.format(column, key)
+                    column_family = '%s:%s' % (column, key)
 
                     if encode_content:
                         if PY3:
                             column_family = base64.b64encode(column_family.encode('utf8')).decode('utf8')
                             value = base64.b64encode(str(value).encode('utf8')).decode('utf8')
                         else:
-                            column_family = base64.b64encode(column_family)
-                            value = base64.b64encode(str(value))
+                            column_family = base64.b64encode(column_family.encode('utf8'))
+                            value = base64.b64encode(value.encode('utf8'))
 
                     cell_data = {
                         "column": column_family,
