@@ -30,7 +30,7 @@ def build_json_data(row, columns, timestamp=None, encode_content=False, with_row
         if PY3:
             row = base64.b64encode(row.encode('utf8')).decode('utf8')
         else:
-            row = base64.b64encode(row)
+            row = base64.b64encode(row.encode('utf8'))
 
     cell = []
 
